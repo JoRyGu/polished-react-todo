@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css?family=Share+Tech+Mono');
+
+h2 {
+  margin: 2px;
+  margin-top: 0px;
+  padding: 0;
+  font-size: 30px;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background-image: linear-gradient(to right, #4a89ef, #ef4962);
+  height: 100vh;
+  color: white;
+  font-family: 'Share Tech Mono', monospace;
+  text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+}
+
+.App h1 {
+  font-size: 48px;
+}
+
+.App .saved-task {
+  list-style-type: none;
+  text-align: center;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  min-height: 28px;
+  cursor: pointer;
+}
+
+.App .buttons {
+  background-color: rgba(0,0,0,0);
+  border: none;
+  color: white;
+  text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  display: none;
+}
+
+.App .finished {
+  text-decoration: line-through;
+}
+
+.App .buttons:hover {
+  cursor: pointer;
+}
+
+.saved-task:hover .buttons {
+  display: flex;
+}
+
+.saved-task:focus .buttons {
+  display: flex;
+}
+
+.saved-task:active .buttons {
+  display: flex;
+}
+
+.edit-task {
+  margin-top: 8px;
+}
+
+#delete {
+  font-size: 22px;
+}
+
+#delete:hover {
+  font-size: 24px;
+}
+
+#finish {
+  font-size: 22px;
+}
+
+#finish:hover {
+  font-size: 24px;
+}
+
+#edit:hover {
+  font-size: 22px;
+}
+
+.App .buttons:active {
+  outline: none;
+}
+
+.App .buttons:focus {
+  outline: none;
+}
+
+.App .lists {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.App .wip {
+  border: 1px solid white;
+  padding: 10px;
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+}
+
+.App .completed {
+  border: 1px solid white;
+  padding: 10px;
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+}
+
+.App .wip {
+  margin-right: 2%;
+}
+
+.App ul {
+  list-style-type: none;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+}
+
+.App input {
+  background-color: rgba(0,0,0,0);
+  border: 1px solid white;
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+  border-style: solid;
+  font-size: 20px;
+  text-align: center;
+  color: white;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.App input:focus {
+  outline: none;
+}
+
+.App input::placeholder {
+  color: #DDD;
+  font-family: 'Share Tech Mono', monospace;
+}
