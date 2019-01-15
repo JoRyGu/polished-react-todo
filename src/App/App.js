@@ -9,6 +9,47 @@ class App extends Component {
       wipItems: [],
       completeItems: []
     }
+
+    this.handlePageRefresh = this.handlePageRefresh.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
+  }
+
+  componentWillMount() {
+    if(localStorage.getItem('state')) {
+      this.setState({
+        wipItems: JSON.parse(localStorage.getItem('state')).wipItems,
+        completeItems: JSON.parse(localStorage.getItem('state')).completeItems
+      });
+    } else {
+      this.setState({
+        wipItems: [],
+        completeItems: []
+      });
+    }
+    
+
+    window.addEventListener('beforeunload', this.handlePageRefresh);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('beforeunload', this.handlePageRefresh);
+  }
+
+  handlePageRefresh() {
+    localStorage.setItem('state', JSON.stringify({
+      wipItems: this.state.wipItems,
+      completeItems: this.state.completeItems
+    }));
+  }
+
+  handleEdit(oldContent, newContent) {
+    const editArr = this.state.wipItems.slice();
+    const i = editArr.findIndex(element => element.content === oldContent);
+    editArr[i] = { content: newContent };
+
+    this.setState({
+      wipItems: editArr
+    });
   }
 
   /*---- WIP LIST METHODS ----*/
@@ -20,13 +61,22 @@ class App extends Component {
     const inputContent = e.target.firstChild.value;
     const newItemsArray = this.state.wipItems.slice(0, this.state.wipItems.length);
     newItemsArray.push({content: inputContent});
+    localStorage.setItem('state', JSON.stringify({
+      wipItems: newItemsArray,
+      completeItems: this.state.completeItems
+    }))
     this.setState({wipItems: newItemsArray});
+    
     e.target.firstChild.value = '';
   }
 
   /* Handles user clicking the delete button within the WIP list. Removes the task from all lists. */
   handleWipDelete(e, index) {
     const newArr = this.state.wipItems.filter((li, i) => i !== index);
+    localStorage.setItem('state', JSON.stringify({
+      wipItems: newArr,
+      completeItems: this.state.completeItems
+    }));
     this.setState({wipItems: newArr});
   }
 
@@ -35,6 +85,10 @@ class App extends Component {
   handleCompleteTask(e, content) {
     const newWipArr = this.state.wipItems.filter(li => li.content !== content);
     const newCompleteArr = this.state.completeItems.concat([{content: content}]);
+    localStorage.setItem('state', JSON.stringify({
+      wipItems: newWipArr,
+      completeItems: newCompleteArr
+    }));
 
     this.setState({wipItems: newWipArr, completeItems: newCompleteArr});
   }
@@ -47,6 +101,11 @@ class App extends Component {
     const newCompleteArr = this.state.completeItems.filter(li => li.content !== content);
     const newWipArr = this.state.wipItems.concat([{content: content}]);
 
+    localStorage.setItem('state', JSON.stringify({
+      wipItems: newWipArr,
+      completeItems: newCompleteArr
+    }));
+
     this.setState({wipItems: newWipArr, completeItems: newCompleteArr});
   }
 
@@ -54,6 +113,10 @@ class App extends Component {
      Removes the task from all lists. */
   handleCompleteDelete(e, index) {
     const newArr = this.state.completeItems.filter((li, i) => i !== index);
+    localStorage.setItem('state', JSON.stringify({
+      wipItems: this.state.wipItems,
+      completeItems: newArr
+    }));
     this.setState({completeItems: newArr});
   }
 
@@ -81,6 +144,10 @@ class App extends Component {
     const content = e.dataTransfer.getData("content");
     const newWipArr = this.state.wipItems.filter(li => li.content !== content);
     const newCompleteArr = this.state.completeItems.concat([{content: content}])
+    localStorage.setItem('state', JSON.stringify({
+      wipItems: newWipArr,
+      completeItems: newCompleteArr
+    }));
     this.setState({wipItems: newWipArr, completeItems: newCompleteArr});
   }
 
@@ -95,6 +162,11 @@ class App extends Component {
     const content = e.dataTransfer.getData("content");
     const newCompleteArr = this.state.completeItems.filter(li => li.content !== content);
     const newWipArr = this.state.wipItems.concat([{content: content}]);
+
+    localStorage.setItem('state', JSON.stringify({
+      wipItems: newWipArr,
+      completeItems: newCompleteArr
+    }));
     this.setState({wipItems: newWipArr, completeItems: newCompleteArr})
   }
 
@@ -114,7 +186,9 @@ class App extends Component {
               finished={false}
               handleDelete={(e) => this.handleWipDelete(e, index)} 
               handleComplete={(e) => this.handleCompleteTask(e, li.content)}
-              onDragStart={e => this.handleDragStart(e, li.content)} />
+              onDragStart={e => this.handleDragStart(e, li.content)} 
+              handleEdit={ this.handleEdit }
+              />
             )}
             <li className="edit-task">
               <form onSubmit={this.handleSubmit.bind(this)}>
@@ -132,6 +206,7 @@ class App extends Component {
               handleDelete={(e) => this.handleCompleteDelete(e, index)} 
               handleUncomplete={(e) => this.handleUncompleteTask(e, li.content)}
               onDragStart={e => this.handleDragStart(e, li.content)}
+              
               />
               )}
           </ul>

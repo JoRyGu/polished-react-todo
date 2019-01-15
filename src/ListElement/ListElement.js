@@ -24,6 +24,7 @@ class ListElement extends Component {
        to true. */
     handleSubmit(e) {
         e.preventDefault();
+        this.props.handleEdit(this.props.content, e.target.firstChild.value);
         const inputContent = e.target.firstChild.value;
         this.setState({edit: false, content: inputContent});
     }
@@ -47,7 +48,6 @@ class ListElement extends Component {
                         {this.state.content}
                         <div className="buttons">
                             <span><button className="buttons" id="finish" onClick={this.props.handleUncomplete}><ion-icon name="undo"></ion-icon></button></span>
-                            <span><button className="buttons" id="edit" onClick={this.handleEdit.bind(this)}><ion-icon name="build"></ion-icon></button></span>
                             <span><button className="buttons" id="delete" onClick={this.props.handleDelete}><ion-icon name="trash"></ion-icon></button></span>
                         </div>
                     </li>
