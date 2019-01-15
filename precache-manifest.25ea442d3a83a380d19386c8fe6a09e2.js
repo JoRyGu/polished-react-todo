@@ -4,19 +4,19 @@ self.__precacheManifest = [
     "url": "/polished-react-todo/static/js/runtime~main.f6c8df0c.js"
   },
   {
-    "revision": "77fb8a4a444cbd3276b7",
-    "url": "/polished-react-todo/static/js/main.77fb8a4a.chunk.js"
+    "revision": "2a6288eca87e6f386e02",
+    "url": "/polished-react-todo/static/js/main.2a6288ec.chunk.js"
   },
   {
     "revision": "97f165e70af863d8fb37",
     "url": "/polished-react-todo/static/js/1.97f165e7.chunk.js"
   },
   {
-    "revision": "77fb8a4a444cbd3276b7",
-    "url": "/polished-react-todo/static/css/main.73a6cd9b.chunk.css"
+    "revision": "2a6288eca87e6f386e02",
+    "url": "/polished-react-todo/static/css/main.8d804920.chunk.css"
   },
   {
-    "revision": "e1377ac7ce034647b47307ec03627a36",
+    "revision": "eaeb00d0b8bddf57d8300f01ac2f2511",
     "url": "/polished-react-todo/index.html"
   }
 ];
