@@ -12,6 +12,7 @@ class App extends Component {
 
     this.handlePageRefresh = this.handlePageRefresh.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
+    this.handleClear = this.handleClear.bind(this);
   }
 
   componentWillMount() {
@@ -169,6 +170,13 @@ class App extends Component {
     }));
     this.setState({wipItems: newWipArr, completeItems: newCompleteArr})
   }
+  
+  handleClear() {
+    this.setState({
+      wipItems: [],
+      completeItems: []
+    });
+  }
 
   
 
@@ -211,6 +219,7 @@ class App extends Component {
               )}
           </ul>
         </div>
+        <button className="clear-button" onClick={ this.handleClear }>Clear All ToDos</button>
       </div>
     );
   }

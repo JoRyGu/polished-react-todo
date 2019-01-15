@@ -149,3 +149,31 @@ h2 {
   color: #DDD;
   font-family: 'Share Tech Mono', monospace;
 }
+
+.clear-button {
+  background: transparent;
+  margin-top: 25px;
+  width: 200px;
+  height: 30px;
+  font-family: 'Share Tech Mono', monospace;
+  color: white;
+  font-size: 18px;
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+  border: 1px solid white;
+  transition: transform 100ms ease-in, box-shadow 100ms ease-in;
+}
+
+.clear-button:hover {
+  cursor: pointer;
+}
+
+.clear-button:active {
+  outline: none;
+  box-shadow: 2px 2px 2px rgba(0,0,0,0.8);
+  transform: scale(0.95);
+}
+
+.clear-button:focus {
+  outline: none;
+}
